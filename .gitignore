@@ -2,8 +2,9 @@
 *.o
 test
 *.oct
-*.wav
 *.exe
 *.a
 *.m
+Release/*
+octave-port/*.wav
 

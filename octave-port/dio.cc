@@ -25,6 +25,8 @@ DEFUN_DLD (dio, args, nargout, "") {
   init_option(frame_period);
   init_option(speed);
   init_option(f0_floor);
+  init_option(f0_ceil);
+  init_option(channels_in_octave);
   init_option(allowed_range);
 
   int f0_length = GetSamplesForDIO(fs, x_length, dio_option.frame_period);
