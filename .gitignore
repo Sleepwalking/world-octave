@@ -1,10 +1,11 @@
 *~
 *.o
-test
 *.oct
 *.exe
 *.a
 *.m
-Release/*
 octave-port/*.wav
+Release/test
+Release/*.a
+Release/*.oct
 
