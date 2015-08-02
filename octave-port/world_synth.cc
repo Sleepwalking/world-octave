@@ -28,11 +28,11 @@ DEFUN_DLD (world_synth, args, nargout, "") {
   double** synth_spectrogram = new double*[f0_length];
   double** synth_aperiodicity = new double*[f0_length];
   double*  synth_y = new double[y_length];
-  for(int i = 0; i < f0_length; i ++) {
+  for(int i = 0; i < f0_length; ++i) {
     synth_f0[i] = f0(i);
     synth_spectrogram[i] = new double[spec_size];
     synth_aperiodicity[i] = new double[spec_size];
-    for(int j = 0; j < spec_size; j ++) {
+    for(int j = 0; j < spec_size; ++j) {
       synth_spectrogram[i][j] = spectrogram(i, j);
       synth_aperiodicity[i][j] = aperiodicity(i, j);
     }
@@ -42,15 +42,15 @@ DEFUN_DLD (world_synth, args, nargout, "") {
   
   NDArray y;
   y.resize1(y_length);
-  for(int i = 0; i < y_length; i ++)
+  for(int i = 0; i < y_length; ++i)
     y(i) = synth_y[i];
-  for(int i = 0; i < f0_length; i ++) {
-    delete [] synth_spectrogram[i];
-    delete [] synth_aperiodicity[i];
+  for(int i = 0; i < f0_length; ++i) {
+    delete[] synth_spectrogram[i];
+    delete[] synth_aperiodicity[i];
   }
-  delete [] synth_f0;
-  delete [] synth_spectrogram;
-  delete [] synth_aperiodicity;
+  delete[] synth_f0;
+  delete[] synth_spectrogram;
+  delete[] synth_aperiodicity;
 
   octave_value_list retval;
   retval(0) = y;

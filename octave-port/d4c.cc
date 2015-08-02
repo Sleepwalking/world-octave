@@ -25,9 +25,9 @@ DEFUN_DLD (d4c, args, nargout, "") {
   double*  d4c_f0 = new double[f0_length];
   double*  d4c_time_axis = new double[f0_length];
   double** d4c_aperiodicity = new double*[f0_length];
-  for(int i = 0; i < x_length; i ++)
+  for(int i = 0; i < x_length; ++i)
     d4c_x[i] = x(i);
-  for(int i = 0; i < f0_length; i ++) {
+  for(int i = 0; i < f0_length; ++i) {
     d4c_f0[i] = f0(i);
     d4c_time_axis[i] = time_axis(i);
     d4c_aperiodicity[i] = new double[spec_size];
@@ -36,16 +36,15 @@ DEFUN_DLD (d4c, args, nargout, "") {
     d4c_aperiodicity);
   
   Matrix aperiodicity(f0_length, spec_size);
-  for(int i = 0; i < f0_length; i ++)
-  {
-    for(int j = 0; j < spec_size; j ++)
+  for(int i = 0; i < f0_length; ++i) {
+    for(int j = 0; j < spec_size; ++j)
         aperiodicity(i, j) = d4c_aperiodicity[i][j];
-    delete [] d4c_aperiodicity[i];
+    delete[] d4c_aperiodicity[i];
   }
-  delete [] d4c_x;
-  delete [] d4c_f0;
-  delete [] d4c_time_axis;
-  delete [] d4c_aperiodicity;
+  delete[] d4c_x;
+  delete[] d4c_f0;
+  delete[] d4c_time_axis;
+  delete[] d4c_aperiodicity;
 
   octave_value_list retval;
   retval(0) = aperiodicity;

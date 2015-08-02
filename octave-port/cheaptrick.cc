@@ -24,9 +24,9 @@ DEFUN_DLD (cheaptrick, args, nargout, "") {
   double*  cheaptrick_f0 = new double[f0_length];
   double*  cheaptrick_time_axis = new double[f0_length];
   double** cheaptrick_spectrogram = new double*[f0_length];
-  for(int i = 0; i < x_length; i ++)
+  for(int i = 0; i < x_length; ++i)
     cheaptrick_x[i] = x(i);
-  for(int i = 0; i < f0_length; i ++) {
+  for(int i = 0; i < f0_length; ++i) {
     cheaptrick_f0[i] = f0(i);
     cheaptrick_time_axis[i] = time_axis(i);
     cheaptrick_spectrogram[i] = new double[spec_size];
@@ -35,16 +35,15 @@ DEFUN_DLD (cheaptrick, args, nargout, "") {
     f0_length, cheaptrick_spectrogram);
   
   Matrix spectrogram(f0_length, spec_size);
-  for(int i = 0; i < f0_length; i ++)
-  {
-    for(int j = 0; j < spec_size; j ++)
+  for(int i = 0; i < f0_length; ++i) {
+    for(int j = 0; j < spec_size; ++j)
         spectrogram(i, j) = cheaptrick_spectrogram[i][j];
-    delete [] cheaptrick_spectrogram[i];
+    delete[] cheaptrick_spectrogram[i];
   }
-  delete [] cheaptrick_x;
-  delete [] cheaptrick_f0;
-  delete [] cheaptrick_time_axis;
-  delete [] cheaptrick_spectrogram;
+  delete[] cheaptrick_x;
+  delete[] cheaptrick_f0;
+  delete[] cheaptrick_time_axis;
+  delete[] cheaptrick_spectrogram;
 
   octave_value_list retval;
   retval(0) = spectrogram;

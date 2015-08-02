@@ -22,9 +22,9 @@ DEFUN_DLD (stonemask, args, nargout, "") {
   double* stone_f0 = new double[f0_length];
   double* stone_time_axis = new double[f0_length];
   double* stone_refined_f0 = new double[f0_length];
-  for(int i = 0; i < x_length; i ++)
+  for(int i = 0; i < x_length; ++i)
     stone_x[i] = x(i);
-  for(int i = 0; i < f0_length; i ++) {
+  for(int i = 0; i < f0_length; ++i) {
     stone_f0[i] = f0(i);
     stone_time_axis[i] = time_axis(i);
   }
@@ -32,12 +32,12 @@ DEFUN_DLD (stonemask, args, nargout, "") {
     
   NDArray refined_f0;
   refined_f0.resize1(f0_length);
-  for(int i = 0; i < f0_length; i ++)
+  for(int i = 0; i < f0_length; ++i)
     refined_f0(i) = stone_refined_f0[i];
-  delete [] stone_x;
-  delete [] stone_f0;
-  delete [] stone_time_axis;
-  delete [] stone_refined_f0;
+  delete[] stone_x;
+  delete[] stone_f0;
+  delete[] stone_time_axis;
+  delete[] stone_refined_f0;
 
   octave_value_list retval;
   retval(0) = refined_f0;
