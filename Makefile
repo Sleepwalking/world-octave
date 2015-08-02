@@ -4,13 +4,15 @@
 # Makefile for Linux system
 
 CC := g++
-CFLAGS := -g -O2 -Wall -I.
+AR := ar
+MKOCTFILE := mkoctfile
+CFLAGS := -g -O2 -Wall -I. -fPIC
 
 all: Release/test
 
 clean:
-	rm -f *.o
-	rm -f Release/test
+	rm -rf *.o
+	rm -f Release/*
 
 TEST_OBJS = common.o dio.o synthesis.o matlabfunctions.o \
             cheaptrick.o stonemask.o d4c.o fft.o test.o
@@ -20,3 +22,5 @@ Release/test: $(TEST_OBJS)
 
 .cpp.o:
 	$(CC) $(CFLAGS) -c $<
+
+

@@ -4,4 +4,6 @@ test
 *.oct
 *.wav
 *.exe
+*.a
+*.m
 
