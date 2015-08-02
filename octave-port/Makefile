@@ -8,7 +8,7 @@ AR := ar
 MKOCTFILE := mkoctfile
 CFLAGS := -g -O2 -Wall -I. -fPIC
 
-all: ../Release/dio.oct
+all: ../Release/dio.oct ../Release/stonemask.oct
 
 clean:
 	rm -rf *.o
@@ -23,8 +23,8 @@ TEST_OBJS = ../common.o ../dio.o ../synthesis.o ../matlabfunctions.o \
 ../Release/libworld.a: $(TEST_OBJS)
 	$(AR) rvs ../Release/libworld.a $(TEST_OBJS)
 
-../Release/dio.oct: ../Release/libworld.a dio.cc
-	$(MKOCTFILE) dio.cc -lworld -L../Release -o ../Release/dio.oct
+../Release/%.oct: ../Release/libworld.a %.cc
+	$(MKOCTFILE) $*.cc -lworld -L../Release -o ../Release/$*.oct
 
 .cpp.o:
 	$(CC) $(CFLAGS) -c $<

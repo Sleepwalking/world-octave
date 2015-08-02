@@ -43,6 +43,7 @@ DEFUN_DLD (dio, args, nargout, "") {
     f0(i) = dio_f0[i];
     time_axis(i) = dio_time_axis[i];
   }
+  delete [] dio_x;
   delete [] dio_f0;
   delete [] dio_time_axis;
 
