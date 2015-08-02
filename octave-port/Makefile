@@ -8,8 +8,8 @@ AR := ar
 MKOCTFILE := mkoctfile
 CFLAGS := -g -O2 -Wall -I. -fPIC
 
-all: ../Release/dio.oct ../Release/stonemask.oct
-
+all: ../Release/dio.oct ../Release/stonemask.oct ../Release/cheaptrick.oct \
+      ../Release/d4c.oct ../Release/world_synth.oct
 clean:
 	rm -rf *.o
 	rm -f ../Release/*
